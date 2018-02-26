@@ -1,0 +1,12 @@
+import pika
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.basic_publish(exchange='', routing_key='queue0', body='')
+
+from sys import stdin, stdout
+
+cur_key = 0
+while True:
+    a = stdin.readline()
+    channel.publish(exchange='', routing_key='queue0', body=str(cur_key) + '\t' + a)
+    cur_key += 1

@@ -1,0 +1,4 @@
+from python:3
+copy requirements.txt .
+run pip install -r ./requirements.txt
+cmd ["python", "consumer.py"]

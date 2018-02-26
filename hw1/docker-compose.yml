@@ -1,0 +1,20 @@
+version: "2"
+
+services:
+    rabbit:
+        image: rabbitmq
+        networks:
+            - network1
+    redis:
+        image: redis
+        networks:
+            - network1
+    consumer:
+        image: consumer
+        build: ./Consumer
+        networks:
+            - network1
+        restart: always
+
+networks:
+    network1:

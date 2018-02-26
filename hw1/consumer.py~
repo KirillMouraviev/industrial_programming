@@ -1,0 +1,20 @@
+import pika
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+channel.queue_declare(queue='queue0')
+
+import redis
+pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+r = redis.Redis(host='localhost', port=6379, db=0)
+
+def callback(ch, method, properties, body):
+    a = str(body, encoding='utf-8').split('\t')
+    print(a)
+    key = a[0]
+    value = a[1]
+    r.set(key, value)
+    word = r.get(key)
+    print(word)
+
+channel.basic_consume(callback, queue='queue0', no_ack=True)
+channel.start_consuming()
