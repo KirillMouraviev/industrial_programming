@@ -1,0 +1,11 @@
+from python:3
+run pip install --upgrade
+run pip install django
+
+copy . .
+
+run python manage.py makemigrations
+run python manage.py migrate
+run python manage.py makemigrations todos
+run python manage.py migrate
+run python manage.py runserver 8080

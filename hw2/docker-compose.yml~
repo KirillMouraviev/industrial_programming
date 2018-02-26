@@ -1,0 +1,24 @@
+version: "3"
+services:
+
+    db:
+        image: sqlite3
+        networks:
+            - network1
+    
+    web:
+        image: django-web
+        build: ./src
+        
+        networks:
+            - network1
+        restart: always
+        
+        depends_on:
+            - db
+
+        ports:
+            - "8080:8080"
+            
+networks:
+    network1:
