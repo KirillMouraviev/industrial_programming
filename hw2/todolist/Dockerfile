@@ -8,4 +8,4 @@ run python manage.py makemigrations
 run python manage.py migrate
 run python manage.py makemigrations todos
 run python manage.py migrate
-run python manage.py runserver 8080
+cmd ["python", "manage.py runserver 8080"]
