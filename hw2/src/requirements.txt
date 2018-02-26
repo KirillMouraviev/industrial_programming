@@ -1,4 +1,0 @@
-Django
-django-widget-tweaks
-psycopg2
-pytz
